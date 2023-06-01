@@ -3,10 +3,10 @@ class Solution {
     public int[] solution(String today, String[] terms,String[] privacies){
         int[] answer = {};
 
-        Map<String, String> termsMap = new HashMap<>();
+        Map<String, Integer> termsMap = new HashMap<>();
         for(String term : terms){
             String[] termSplit = term.split(" ");
-            termsMap.put(termSplit[0],termSplit[1]);
+            termsMap.put(termSplit[0],Integer.parseInt(termSplit[1]));
         }
 
         List<Integer> result = new ArrayList<>();
@@ -17,7 +17,7 @@ class Solution {
             String[] privateSplit = p.split(" ");
 
             String privateDate = privateSplit[0];
-            int termsMonth = Integer.valueOf(termsMap.get(privateSplit[1]));
+            int termsMonth = termsMap.get(privateSplit[1]);
 
             int privateTotalDate  = getTotalDate(privateDate,termsMonth)-1;
 
@@ -39,4 +39,5 @@ class Solution {
         // 일로 바꾸기
         return (year * 12 * 28)  + (month * 28) +day;
     }
+
 }
