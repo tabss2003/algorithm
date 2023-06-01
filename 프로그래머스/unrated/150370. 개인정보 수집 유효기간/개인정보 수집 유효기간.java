@@ -10,17 +10,16 @@ class Solution {
         }
 
         List<Integer> result = new ArrayList<>();
-        Integer privaciesNumber = 1;
+        int privaciesNumber = 1;
 
-        Integer todayTotalDate = getTotalDate(today,0);
+        int todayTotalDate = getTotalDate(today,0);
         for(String p : privacies){
             String[] privateSplit = p.split(" ");
 
             String privateDate = privateSplit[0];
-            String privateTerm = privateSplit[1];
-            Integer termsMonth = Integer.valueOf(termsMap.get(privateTerm));
+            int termsMonth = Integer.valueOf(termsMap.get(privateSplit[1]));
 
-            Integer privateTotalDate  = getTotalDate(privateDate,termsMonth)-1;
+            int privateTotalDate  = getTotalDate(privateDate,termsMonth)-1;
 
             if(privateTotalDate < todayTotalDate){
                 result.add(privaciesNumber);
@@ -31,11 +30,11 @@ class Solution {
 
         return answer;
     }
-    public Integer getTotalDate(String strDate, Integer termsMonth){
+    static public int getTotalDate(String strDate, Integer termsMonth){
         String[] dateSplit = strDate.split("\\.");
-        Integer year = Integer.valueOf(dateSplit[0]);
-        Integer month = Integer.valueOf(dateSplit[1])+ termsMonth;
-        Integer day = Integer.valueOf(dateSplit[2]);
+        int year = Integer.valueOf(dateSplit[0]);
+        int month = Integer.valueOf(dateSplit[1])+ termsMonth;
+        int day = Integer.valueOf(dateSplit[2]);
 
         // 일로 바꾸기
         return (year * 12 * 28)  + (month * 28) +day;
