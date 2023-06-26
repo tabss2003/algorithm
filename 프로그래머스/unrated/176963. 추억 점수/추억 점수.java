@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-
+ 
 class Solution {
     public int[] solution(String[] name, int[] yearning, String[][] photo) {
         int[] answer = new int[photo.length];
