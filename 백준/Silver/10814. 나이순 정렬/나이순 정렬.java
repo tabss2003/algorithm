@@ -6,23 +6,28 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
        int n = Integer.parseInt(st.nextToken());
-       String[][] member = new String[n][2];
+       HashMap<Integer,List<String>> map = new HashMap<>();
        for(int i=0;i<n;i++) {
            st = new StringTokenizer(br.readLine());
-           member[i][0] = st.nextToken();
-           member[i][1] = st.nextToken();
+          int age = Integer.parseInt(st.nextToken());
+          String name = st.nextToken();
+          List<String> values;
+          if(map.containsKey(age)){
+              values = map.get(age);
+          }else{
+              values = new ArrayList<>();
+          }
+           values.add(name);
+           map.put(age,values);
        }
        
-       Arrays.sort(member,new Comparator<String[]>(){
-           @Override
-           public int compare(String[] o1,String[] o2){
-               return Integer.compare(Integer.parseInt(o1[0]),Integer.parseInt(o2[0]));
+       for(Integer key : map.keySet()){
+           for(String value : map.get(key)){
+               System.out.println(key+" "+value);
            }
-       });
-       
-       for(int i=0;i<n;i++){
-           System.out.println(member[i][0] +" "+member[i][1]);
        }
     }
+
+       
 
 }
